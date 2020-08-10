@@ -6,7 +6,43 @@
     <title>Document</title>
 </head>
 <body>
-    <style></style>
+    <style>
+
+        body {
+            background-color: rgb(19, 17, 26);
+        }
+
+        .container {
+            display: flex;
+
+            flex-direction: column;
+            margin-left: 30px;
+            justify-content: center;
+            align-items: center;            
+        }
+
+        li {
+            list-style: none;
+        }
+
+        li img {
+            width: 600px;
+            height: 100%;
+
+            opacity: .5;
+
+            border: 8px solid black;
+
+            object-fit: contain;
+            transition: .3s;
+        }
+
+        li img:hover {
+            opacity: 1 !important;
+            cursor: pointer;
+        }
+
+    </style>
 
     <div class="container"></div>
 
@@ -16,7 +52,7 @@
             const response = await fetch('./instagram.json')
             const data = await response.json()
 
-            const htmlList = data.map( ({ src }) => `<li><img src='${src}' /></li>` )
+            const htmlList = data.map( ({ src }) => `<li><img src='${src}' /></li>` ).join('')
 
             document.querySelector('.container').innerHTML = htmlList
         })()
