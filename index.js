@@ -1,10 +1,22 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto('https://github.com/Juniordell');
-  await page.screenshot({path: 'github.png'});
+  await page.goto('https://www.instagram.com/rocketseat_oficial');
+  await page.evaluate(() => {
 
-  await browser.close();
+    const nodeList = document.querySelectorAll('article img')
+
+    const imgArray = [ ...nodeList ]
+
+    const list = imgArray.map(({src}) => ({
+        src
+    }))
+
+    console.log(list)
+
+  });
+
+//   await browser.close();
 })();
